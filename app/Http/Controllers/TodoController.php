@@ -41,4 +41,22 @@ class TodoController extends Controller
         return Todo::destroy($id);
 
     }
+    public function todoStatus($id)
+    {
+        $todoStatus = Todo::find($id);
+        $status = $todoStatus->status;
+        if($status == true){
+            $todoStatus->status = false;
+            $todoStatus->save();
+        }else{
+            $todoStatus->status = true;
+            $todoStatus->save();
+        }
+    }
+    public function search(Request $request)
+    {
+        $search = $request->search;
+        $posts = Todo::where('title', 'like', '%'.$search.'%')->latest()->get();
+        return response()->json($posts);
+    }
 }

@@ -10,9 +10,9 @@
                 rows = rows + '<td>' + value.details + '</td>';
                 rows = rows + '<td>';
                 if (value.status == true) {
-                    rows = rows + '<span class="badge rounded-pill text-bg-success"><i class="fa fa-check"></i> Completed</span>';
+                    rows = rows + '<span class="badge rounded-pill text-bg-success approval_todo" data-id="'+value.id+'"><i class="fa fa-check"></i> Completed</span>';
                 } else {
-                    rows = rows + '<span class="badge rounded-pill text-bg-danger"><i class="fa fa-exclamation-circle"></i> Incomplete</span>';
+                    rows = rows + '<span class="badge rounded-pill text-bg-danger approval_todo" data-id="'+value.id+'"><i class="fa fa-exclamation-circle"></i> Incomplete</span>';
                 }
                 rows = rows + '</td>';
                 rows = rows + '<td>';
@@ -128,5 +128,39 @@
                             console.log(error)
                         })
                 }
+            })
+        });
+
+        // approval_status
+        $(document).on('click', '.approval_todo', function(e){
+            e.preventDefault()
+            let id = $(this).data('id')
+            axios.put('/api/todo/update-status/'+id)
+            .then(response=>{
+                getAllData();
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Your work has been updated',
+                });
+            })
+            .catch(error=>{
+                console.log(error);
+            })
+        });
+
+        //search data
+        $(document).ready(function(){
+            $('#search_form').submit(function(e){
+                e.preventDefault()
+                let search = $('#search').val()
+                axios.get('/api/todo/search?search='+search)
+                .then(response=>{
+                    tableData(response.data)
+                    console.log(response.data);
+                })
+                .catch(error=>{
+                    console.log(error);
+                })
             })
         })

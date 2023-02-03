@@ -26,5 +26,7 @@ Route::group(['namespace'=>'App\Http\Controllers'], function(){
         Route::get('/edit/{id}', 'TodoController@edit');
         Route::put('/update/{id}', 'TodoController@update')->name('todo.update');
         Route::get('/destroy/{id}', 'TodoController@destroy')->name('todo.destroy');
+        Route::put('/update-status/{id}', 'TodoController@todoStatus')->name('todo.status');
+        Route::get('/search', 'TodoController@search')->name('todo.search');
     });
 });

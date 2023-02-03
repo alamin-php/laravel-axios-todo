@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>Todo App</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
@@ -16,6 +16,7 @@
         body {
             font-family: 'Nunito', sans-serif;
         }
+        span.approval_todo{cursor: pointer;}
     </style>
 </head>
 
@@ -26,9 +27,16 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title mb-3 text-muted">Todo List <a href="http://"
-                                class="btn btn-primary btn-sm float-end" data-bs-toggle="modal"
-                                data-bs-target="#addModal"><i class="fa fa-plus-circle"></i> Add New Todo</a></h5>
-                        <table id="example" class="table table-striped" style="width:100%">
+                            class="btn btn-primary btn-sm float-end" data-bs-toggle="modal"
+                            data-bs-target="#addModal"><i class="fa fa-plus-circle"></i> Add New Todo</a></h5>
+                            <table id="example" class="table table-striped" style="width:100%">
+                                <div class="row">
+                                    <form action="" id="search_form">
+                                        <div class="col-md-12">
+                                            <input type="text" class="form-control form-control-sm" name="search" id="search" placeholder="Search keyword...">
+                                        </div>
+                                    </form>
+                                </div>
                             <thead>
                                 <tr>
                                     <th width="5%">SL</th>
